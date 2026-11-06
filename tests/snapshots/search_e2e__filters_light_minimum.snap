@@ -1,0 +1,38 @@
+---
+source: tests/search_e2e.rs
+expression: light.with_styles()
+---
+size: 80x24  cursor: hidden
+ Compare                                                Preview  Palette
+ 2 / 348 themes | Name: catpp · Light
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Matches                       Filters · Draft
+
+  •    Catppuccin Latte          Name          catpp
+       catppuccin-latte        > Appearance    Light
+                                 Favorite      All
+                                 Ignored       Hide
+
+                                 BG brightness All
+                                 BG color      All
+                                 Text contrast All
+
+                               Current: Catppuccin Latte
+
+
+
+
+
+
+
+ Tab/S-Tab Field  h/l Value  Enter Apply  Esc Cancel  C-c Quit          F1 Help
+
+styles:
+0: 1-55 bold; 65-71 bold
+1: 1 bold; 5-7 bold
+4: 1-7 bold; 31-45 bold
+6: 7-11 fg=3 bold
+7: 7-11 fg=3 bold; 31-46 fg=6 bold; 47-77 bold
+15: 31-78 bold
+23: 1-9 fg=6; 18-20 fg=6; 29-33 fg=6; 42-44 fg=6; 54-56 fg=6; 72-73 fg=6

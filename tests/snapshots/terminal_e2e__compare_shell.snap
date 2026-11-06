@@ -1,0 +1,80 @@
+---
+source: tests/terminal_e2e.rs
+expression: screen.with_styles()
+---
+size: 80x40  cursor: hidden
+ Compare                                                Preview  Shell Small
+ 348 themes
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Pin: 3024 Day
+
+
+   ~/project $ ls -F
+   src/  tests/
+   Cargo.toml  check.sh*
+   latest@
+
+   ~/project $ ./check.sh
+   [info] 3 checks
+   [warn] cache is empty
+   [pass] config syntax
+   [pass] input validation
+   [fail] missing sample.txt
+   Summary: 2 passed, 1 failed
+
+
+ Current: Catppuccin Mocha
+
+
+   ~/project $ ls -F
+   src/  tests/
+   Cargo.toml  check.sh*
+   latest@
+
+   ~/project $ ./check.sh
+   [info] 3 checks
+   [warn] cache is empty
+   [pass] config syntax
+   [pass] input validation
+   [fail] missing sample.txt
+   Summary: 2 passed, 1 failed
+
+
+
+ j/k Move  / Search  p Pin  [/] Preview  Esc Explore  q Quit            F1 Help
+
+styles:
+0: 1-55 bold; 65-75 bold
+1: 1-3 bold
+4: 1-13 bold
+6: 1-78 fg=#4a4543 bg=#f7f7f7
+7: 1-2 fg=#4a4543 bg=#f7f7f7; 3-11 fg=#807d7c bg=#f7f7f7; 12-14 fg=#01a252 bg=#f7f7f7; 15-78 fg=#4a4543 bg=#f7f7f7
+8: 1-2 fg=#4a4543 bg=#f7f7f7; 3-6 fg=#01a0e4 bg=#f7f7f7 bold; 7-8 fg=#4a4543 bg=#f7f7f7; 9-14 fg=#01a0e4 bg=#f7f7f7 bold; 15-78 fg=#4a4543 bg=#f7f7f7
+9: 1-14 fg=#4a4543 bg=#f7f7f7; 15-23 fg=#01a252 bg=#f7f7f7 bold; 24-78 fg=#4a4543 bg=#f7f7f7
+10: 1-2 fg=#4a4543 bg=#f7f7f7; 3-9 fg=#b5e4f4 bg=#f7f7f7 bold; 10-78 fg=#4a4543 bg=#f7f7f7
+11: 1-78 fg=#4a4543 bg=#f7f7f7
+12: 1-2 fg=#4a4543 bg=#f7f7f7; 3-11 fg=#807d7c bg=#f7f7f7; 12-14 fg=#01a252 bg=#f7f7f7; 15-78 fg=#4a4543 bg=#f7f7f7
+13: 1-2 fg=#4a4543 bg=#f7f7f7; 3-17 fg=#b5e4f4 bg=#f7f7f7; 18-78 fg=#4a4543 bg=#f7f7f7
+14: 1-2 fg=#4a4543 bg=#f7f7f7; 3-23 fg=#fded02 bg=#f7f7f7; 24-78 fg=#4a4543 bg=#f7f7f7
+15: 1-2 fg=#4a4543 bg=#f7f7f7; 3-22 fg=#01a252 bg=#f7f7f7; 23-78 fg=#4a4543 bg=#f7f7f7
+16: 1-2 fg=#4a4543 bg=#f7f7f7; 3-25 fg=#01a252 bg=#f7f7f7; 26-78 fg=#4a4543 bg=#f7f7f7
+17: 1-2 fg=#4a4543 bg=#f7f7f7; 3-27 fg=#db2d20 bg=#f7f7f7; 28-78 fg=#4a4543 bg=#f7f7f7
+18: 1-2 fg=#4a4543 bg=#f7f7f7; 3-29 fg=#db2d20 bg=#f7f7f7 bold; 30-78 fg=#4a4543 bg=#f7f7f7
+19: 1-78 fg=#4a4543 bg=#f7f7f7
+21: 1-7 fg=6 bold; 8-25 bold
+23: 1-78 fg=#cdd6f4 bg=#1e1e2e
+24: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-11 fg=#89b4fa bg=#1e1e2e; 12-14 fg=#a6e3a1 bg=#1e1e2e; 15-78 fg=#cdd6f4 bg=#1e1e2e
+25: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-6 fg=#89b4fa bg=#1e1e2e bold; 7-8 fg=#cdd6f4 bg=#1e1e2e; 9-14 fg=#89b4fa bg=#1e1e2e bold; 15-78 fg=#cdd6f4 bg=#1e1e2e
+26: 1-14 fg=#cdd6f4 bg=#1e1e2e; 15-23 fg=#a6e3a1 bg=#1e1e2e bold; 24-78 fg=#cdd6f4 bg=#1e1e2e
+27: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-9 fg=#94e2d5 bg=#1e1e2e bold; 10-78 fg=#cdd6f4 bg=#1e1e2e
+28: 1-78 fg=#cdd6f4 bg=#1e1e2e
+29: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-11 fg=#89b4fa bg=#1e1e2e; 12-14 fg=#a6e3a1 bg=#1e1e2e; 15-78 fg=#cdd6f4 bg=#1e1e2e
+30: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-17 fg=#94e2d5 bg=#1e1e2e; 18-78 fg=#cdd6f4 bg=#1e1e2e
+31: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-23 fg=#f9e2af bg=#1e1e2e; 24-78 fg=#cdd6f4 bg=#1e1e2e
+32: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-22 fg=#a6e3a1 bg=#1e1e2e; 23-78 fg=#cdd6f4 bg=#1e1e2e
+33: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-25 fg=#a6e3a1 bg=#1e1e2e; 26-78 fg=#cdd6f4 bg=#1e1e2e
+34: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-27 fg=#f38ba8 bg=#1e1e2e; 28-78 fg=#cdd6f4 bg=#1e1e2e
+35: 1-2 fg=#cdd6f4 bg=#1e1e2e; 3-29 fg=#f38ba8 bg=#1e1e2e bold; 30-78 fg=#cdd6f4 bg=#1e1e2e
+36: 1-78 fg=#cdd6f4 bg=#1e1e2e
+39: 1-3 fg=6; 11 fg=6; 21 fg=6; 28-30 fg=6; 41-43 fg=6; 54 fg=6; 72-73 fg=6

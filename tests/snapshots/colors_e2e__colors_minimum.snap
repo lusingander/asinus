@@ -1,0 +1,44 @@
+---
+source: tests/colors_e2e.rs
+expression: minimum.with_styles()
+---
+size: 60x22  cursor: hidden
+ Compare                            Preview  Shell
+ 348 themes
+ ──────────────────────────────────────────────────────────
+
+ Color details                 RGB Same 16 Diff 4 Missing 0
+
+  Role            Pin             Current          RGB
+  Magenta            #a16a94         #a16a94       Same
+  Cyan               #b5e4f4         #b5e4f4       Same
+  White              #a5a2a2         #a5a2a2       Same
+  Bright Black       #5c5855         #5c5855       Same    ┃
+  Bright Red         #e8bbd0         #e8bbd0       Same    ┃
+  Bright Green       #3a3432         #3a3432       Same    ┃
+  Bright Yellow      #4a4543         #4a4543       Same    ┃
+  Bright Blue        #807d7c         #807d7c       Same
+  Bright Magenta     #d6d5d4         #d6d5d4       Same
+
+  Magenta         Aa 0123         Aa 0123
+  vs own BG       3.92:1          4.88:1
+  BG              #f7f7f7         #090300
+
+ j/k Roles  Tab Current  Esc Close  q Quit          F1 Help
+
+styles:
+0: 1-35 bold; 45-49 bold
+1: 1-3 bold
+4: 1-13 fg=6 bold; 43-46 fg=3
+6: 2-15 bold; 18-31 bold; 34-48 bold; 51-57 bold
+7: 1-17 reverse; 18-19 bg=#a16a94; 20-33 reverse; 34-35 bg=#a16a94; 36-58 reverse
+8: 18-19 bg=#b5e4f4; 34-35 bg=#b5e4f4
+9: 18-19 bg=#a5a2a2; 34-35 bg=#a5a2a2
+10: 18-19 bg=#5c5855; 34-35 bg=#5c5855
+11: 18-19 bg=#e8bbd0; 34-35 bg=#e8bbd0
+12: 18-19 bg=#3a3432; 34-35 bg=#3a3432
+13: 18-19 bg=#4a4543; 34-35 bg=#4a4543
+14: 18-19 bg=#807d7c; 34-35 bg=#807d7c
+15: 18-19 bg=#d6d5d4; 34-35 bg=#d6d5d4
+17: 2-15 bold; 18-31 fg=#a16a94 bg=#f7f7f7; 34-48 fg=#a16a94 bg=#090300
+21: 1-3 fg=6; 12-14 fg=6; 25-27 fg=6; 36 fg=6; 52-53 fg=6

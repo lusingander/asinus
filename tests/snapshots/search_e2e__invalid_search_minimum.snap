@@ -1,0 +1,49 @@
+---
+source: tests/search_e2e.rs
+expression: invalid.with_styles()
+---
+size: 80x24  cursor: 6,14
+ Compare                                                Preview  Palette Small
+ 0 / 348 themes | Last valid results · Name: catpp type
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Search · type: choose dark or light
+
+ / catpp type:
+
+ Themes                        Pin: zenwritten_light    Current
+
+  No matching themes                                    No theme selected
+                                 Foreground      #35    No matching themes
+                                 Background      #ee
+
+                                           Normal
+                                 Black          Aa0
+                                 Red            Aa0
+                                 Green          Aa0
+                                 Yellow         Aa0
+                                 Blue           Aa0
+                                 Magenta        Aa0
+
+
+ C-u Clear  ↓/↑ Move  C-f/C-b Page  Enter Apply  Esc Cancel  C-c Quit   F1 Help
+
+styles:
+0: 1-55 bold; 65-77 bold
+1: 1 bold; 5-7 bold
+4: 1-9 bold; 10-35 fg=1 bold
+6: 1-2 fg=6 bold
+8: 1-6 bold; 31-51 bold; 56-62 bold
+10: 31-53 fg=#353535 bg=#eeeeee
+11: 31-43 fg=#353535 bg=#eeeeee; 44-47 fg=#353535 bg=#353535; 48-53 fg=#353535 bg=#eeeeee
+12: 31-53 fg=#353535 bg=#eeeeee
+13: 31-53 fg=#353535 bg=#eeeeee
+14: 31-53 fg=#353535 bg=#eeeeee
+15: 31-47 fg=#353535 bg=#eeeeee; 48-50 fg=#eeeeee bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+16: 31-42 fg=#353535 bg=#eeeeee; 43-46 fg=#353535 bg=#a8334c; 47 fg=#353535 bg=#eeeeee; 48-50 fg=#a8334c bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+17: 31-42 fg=#353535 bg=#eeeeee; 43-46 fg=#353535 bg=#4f6c31; 47 fg=#353535 bg=#eeeeee; 48-50 fg=#4f6c31 bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+18: 31-42 fg=#353535 bg=#eeeeee; 43-46 fg=#353535 bg=#944927; 47 fg=#353535 bg=#eeeeee; 48-50 fg=#944927 bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+19: 31-42 fg=#353535 bg=#eeeeee; 43-46 fg=#353535 bg=#286486; 47 fg=#353535 bg=#eeeeee; 48-50 fg=#286486 bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+20: 31-42 fg=#353535 bg=#eeeeee; 43-46 fg=#353535 bg=#88507d; 47 fg=#353535 bg=#eeeeee; 48-50 fg=#88507d bg=#eeeeee; 51-53 fg=#353535 bg=#eeeeee
+21: 31-53 fg=#353535 bg=#eeeeee
+23: 1-3 fg=6; 12-14 fg=6; 22-28 fg=6; 36-40 fg=6; 49-51 fg=6; 61-63 fg=6; 72-73 fg=6

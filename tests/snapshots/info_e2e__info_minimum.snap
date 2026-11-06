@@ -1,0 +1,36 @@
+---
+source: tests/info_e2e.rs
+expression: top.with_styles()
+---
+size: 60x22  cursor: hidden
+ Explore                            Preview  Palette
+ 1 / 348 themes | Name: Firewatch
+ ──────────────────────────────────────────────────────────
+
+ Theme info · Credits
+
+ Current: Firewatch
+  Sebastian Szturo
+  https://github.com/SebastianSzturo
+  Ben Styles
+  https://github.com/leeds-ebooks
+  Firewatch game
+  http://www.firewatchgame.com/
+
+
+
+
+
+
+
+
+ j/k Select  Enter Open  Esc Close  C-c Quit        F1 Help
+
+styles:
+0: 1-35 bold; 45-51 bold
+1: 1 bold; 5-7 bold
+4: 1-13 bold; 14-20 fg=6 bold
+6: 1-56 bold
+7: 1-56 reverse
+8: 1-56 reverse
+21: 1-3 fg=6; 13-17 fg=6; 25-27 fg=6; 36-38 fg=6; 52-53 fg=6

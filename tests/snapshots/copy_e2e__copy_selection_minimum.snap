@@ -1,0 +1,51 @@
+---
+source: tests/copy_e2e.rs
+expression: selected.with_styles()
+---
+size: 80x24  cursor: hidden
+ Explore                                             Preview  Palette Small
+ 1 / 348 themes | Name: LiquidCarbonTransparentIn..  Pin      LiquidCarbonTra..
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Themes                        LiquidCarbonTransparentInverse
+
+  *  LiquidCarbonTranspare..
+              ┌──────────────────────────────────────────────────┐
+              │ Copy theme                                       │
+              │                                                  │
+              │ Target: Current                                  │
+              │ Theme: LiquidCarbonTransparentInverse            │
+              │                                                  │
+              │  Name                                            │
+              │  JSON                                            │
+              │                                                  │
+              │ j/k Format  t Target  Enter Copy  Esc Cancel     │
+              └──────────────────────────────────────────────────┘
+                                 White          Aa0          Aa0
+
+
+
+
+ C-c Quit                                                               F1 Help
+
+styles:
+0: 1-52 bold; 62-74 bold
+1: 1 bold; 5-7 bold; 62-78 bold
+4: 1-6 bold; 31-60 bold
+6: 1-28 reverse; 31-78 fg=#afc2c2 bg=#000000
+7: 66-78 fg=#afc2c2 bg=#000000
+8: 16-63 bold; 66-78 fg=#afc2c2 bg=#000000
+9: 66-78 fg=#afc2c2 bg=#000000
+10: 16-30 fg=6 bold; 66-78 fg=#afc2c2 bg=#000000
+11: 66-78 fg=#afc2c2 bg=#000000
+12: 66-78 fg=#afc2c2 bg=#000000
+13: 16-63 reverse; 66-78 fg=#afc2c2 bg=#000000
+14: 66-78 fg=#afc2c2 bg=#000000
+15: 66-78 fg=#afc2c2 bg=#000000
+16: 16-18 fg=6; 28 fg=6; 38-42 fg=6; 50-52 fg=6; 66-78 fg=#afc2c2 bg=#000000
+17: 66-78 fg=#afc2c2 bg=#000000
+18: 31-47 fg=#afc2c2 bg=#000000; 48-50 fg=#000000 bg=#000000; 51-60 fg=#afc2c2 bg=#000000; 61-63 fg=#000000 bg=#000000; 64-78 fg=#afc2c2 bg=#000000
+19: 31-78 fg=#afc2c2 bg=#000000
+20: 31-78 fg=#afc2c2 bg=#000000
+21: 31-78 fg=#afc2c2 bg=#000000
+23: 1-3 fg=6; 72-73 fg=6

@@ -1,0 +1,27 @@
+---
+source: tests/terminal_e2e.rs
+expression: small
+---
+size: 59x22  cursor: hidden
+ Terminal too small
+
+ Required: 60x22
+ Current:  59x22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ q Quit

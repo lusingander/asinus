@@ -1,0 +1,49 @@
+---
+source: tests/search_e2e.rs
+expression: screen.with_styles()
+---
+size: 80x24  cursor: 6,8
+ Explore                                                Preview  Palette Small
+ 8 / 348 themes | Name: catpp
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Search · Draft
+
+ / catpp
+
+ Themes                        Catppuccin Frappe
+
+     Catppuccin Frappe
+     Catppuccin Latte            Foreground      #c6d0f5 Aa0
+     Catppuccin Macchiato        Background      #303446
+     Catppuccin Mocha
+     catppuccin-frappe                     Normal       Bright
+     catppuccin-latte            Black          Aa0          Aa0
+     catppuccin-macchiato        Red            Aa0          Aa0
+     catppuccin-mocha            Green          Aa0          Aa0
+                                 Yellow         Aa0          Aa0
+                                 Blue           Aa0          Aa0
+                                 Magenta        Aa0          Aa0
+
+
+ C-u Clear  ↓/↑ Move  C-f/C-b Page  Enter Apply  Esc Cancel  C-c Quit   F1 Help
+
+styles:
+0: 1-55 bold; 65-77 bold
+1: 1 bold; 5-7 bold
+4: 1-14 bold
+6: 1-2 fg=6 bold
+8: 1-6 bold; 31-47 bold
+10: 1-28 reverse; 31-78 fg=#c6d0f5 bg=#303446
+11: 5-9 fg=3 bold; 31-43 fg=#c6d0f5 bg=#303446; 44-47 fg=#c6d0f5 bg=#c6d0f5; 48-78 fg=#c6d0f5 bg=#303446
+12: 5-9 fg=3 bold; 31-78 fg=#c6d0f5 bg=#303446
+13: 5-9 fg=3 bold; 31-78 fg=#c6d0f5 bg=#303446
+14: 5-9 fg=3 bold; 31-78 fg=#c6d0f5 bg=#303446
+15: 5-9 fg=3 bold; 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#51576d; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#51576d bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#626880; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#626880 bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+16: 5-9 fg=3 bold; 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#e78284; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#e78284 bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#e78284; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#e78284 bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+17: 5-9 fg=3 bold; 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#a6d189; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#a6d189 bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#a6d189; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#a6d189 bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+18: 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#e5c890; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#e5c890 bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#e5c890; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#e5c890 bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+19: 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#8caaee; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#8caaee bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#8caaee; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#8caaee bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+20: 31-42 fg=#c6d0f5 bg=#303446; 43-46 fg=#c6d0f5 bg=#f4b8e4; 47 fg=#c6d0f5 bg=#303446; 48-50 fg=#f4b8e4 bg=#303446; 51-55 fg=#c6d0f5 bg=#303446; 56-59 fg=#c6d0f5 bg=#f4b8e4; 60 fg=#c6d0f5 bg=#303446; 61-63 fg=#f4b8e4 bg=#303446; 64-78 fg=#c6d0f5 bg=#303446
+21: 31-78 fg=#c6d0f5 bg=#303446
+23: 1-3 fg=6; 12-14 fg=6; 22-28 fg=6; 36-40 fg=6; 49-51 fg=6; 61-63 fg=6; 72-73 fg=6

@@ -1,0 +1,16 @@
+[book]
+authors = ["Kyosuke Fujimoto"]
+language = "en"
+src = "src"
+title = "Asinus"
+description = "Asinus Documentation"
+
+[build]
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/lusingander/asinus"
+site-url = "/asinus/"
+default-theme = "rust"
+sidebar-header-nav = false
+smart-punctuation = false

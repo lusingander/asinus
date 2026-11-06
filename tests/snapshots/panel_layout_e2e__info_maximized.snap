@@ -1,0 +1,62 @@
+---
+source: tests/panel_layout_e2e.rs
+expression: maximized.with_styles()
+---
+size: 120x48  cursor: hidden
+ Explore                                                                                        Preview  Palette
+ 348 themes
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Theme info · Overview
+
+                  Current: 3024 Day
+  Theme           3024 Day
+  Appearance      Light
+  Foreground         #4a4543
+  Background         #f7f7f7
+
+  BG brightness   Very light
+    Lightness L   97.6
+  BG color        Gray
+    Chroma C      0.0000
+    Hue h         None
+
+  Text contrast   Medium
+    Ratio         8.82:1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ j/k Scroll  Tab Current  h/l Section  / Search  f Filters  [/] Preview  d Colors  y Copy  Esc Close  C-c Quit  F1 Help
+
+styles:
+0: 1-95 bold; 105-111 bold
+1: 1-3 bold
+4: 1-13 bold; 14-21 fg=6 bold
+6: 18-116 bold
+9: 18-19 bg=#4a4543
+10: 18-19 bg=#f7f7f7
+47: 1-3 fg=6; 13-15 fg=6; 26-28 fg=6; 39 fg=6; 49 fg=6; 60-62 fg=6; 73 fg=6; 83 fg=6; 91-93 fg=6; 102-104 fg=6; 112-113 fg=6

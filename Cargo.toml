@@ -1,0 +1,30 @@
+[package]
+name = "asinus"
+version = "0.1.0"
+description = "Terminal Color Theme Explorer"
+authors = ["Kyosuke Fujimoto <kyoro.f@gmail.com>"]
+homepage = "https://lusingander.github.io/asinus/"
+repository = "https://github.com/lusingander/asinus"
+readme = "README.md"
+license = "MIT"
+keywords = ["tui", "terminal", "colorscheme", "color", "theme"]
+categories = ["command-line-utilities"]
+edition = "2024"
+rust-version = "1.89.0"
+
+exclude = ["/.github", "/docs", "/img", "/scripts", "/tools"]
+
+[dependencies]
+clap = { version = "4.6.7", features = ["derive"] }
+open = "5.4.5"
+ratatui = "0.30.2"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+tempfile = "3.27.0"
+toml = "1.2.0"
+tui-input = { version = "0.15.5", default-features = false }
+
+[dev-dependencies]
+insta = "1.49.0"
+rstest = "0.28.0"
+termlens = "0.11.8"

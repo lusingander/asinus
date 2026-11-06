@@ -1,0 +1,73 @@
+---
+source: tests/search_e2e.rs
+expression: light.with_styles()
+---
+size: 120x36  cursor: hidden
+ Compare                                                                                        Preview  Palette Small
+ 2 / 348 themes | Name: catpp · Light
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Filters · Draft                       Pin: Catppuccin Mocha
+
+   Name          catpp
+ > Appearance    Light                   Foreground      #cdd6f4 Aa0
+   Favorite      All                     Background      #1e1e2e
+   Ignored       Hide
+                                                   Normal       Bright
+   BG brightness All                     Black          Aa0          Aa0
+   BG color      All                     Red            Aa0          Aa0
+   Text contrast All                     Green          Aa0          Aa0
+                                         Yellow         Aa0          Aa0
+ Matches                                 Blue           Aa0          Aa0
+                                         Magenta        Aa0          Aa0
+  •    Catppuccin Latte
+       catppuccin-latte
+                                       Current: Catppuccin Latte
+
+
+                                         Foreground      #4c4f69 Aa0
+                                         Background      #eff1f5
+
+                                                   Normal       Bright
+                                         Black          Aa0          Aa0
+                                         Red            Aa0          Aa0
+                                         Green          Aa0          Aa0
+                                         Yellow         Aa0          Aa0
+                                         Blue           Aa0          Aa0
+                                         Magenta        Aa0          Aa0
+
+
+
+ Tab/S-Tab Field  h/l Value  C-f/C-b Results  Enter Apply  Esc Cancel  C-c Quit                                 F1 Help
+
+styles:
+0: 1-95 bold; 105-117 bold
+1: 1 bold; 5-7 bold
+4: 1-15 bold; 39-59 bold
+6: 39-118 fg=#cdd6f4 bg=#1e1e2e
+7: 1-16 fg=6 bold; 17-35 bold; 39-51 fg=#cdd6f4 bg=#1e1e2e; 52-55 fg=#cdd6f4 bg=#cdd6f4; 56-118 fg=#cdd6f4 bg=#1e1e2e
+8: 39-118 fg=#cdd6f4 bg=#1e1e2e
+9: 39-118 fg=#cdd6f4 bg=#1e1e2e
+10: 39-118 fg=#cdd6f4 bg=#1e1e2e
+11: 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#45475a; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#45475a bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#585b70; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#585b70 bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+12: 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#f38ba8; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#f38ba8 bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#f38ba8; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#f38ba8 bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+13: 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#a6e3a1; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#a6e3a1 bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#a6e3a1; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#a6e3a1 bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+14: 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#f9e2af; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#f9e2af bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#f9e2af; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#f9e2af bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+15: 1-7 bold; 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#89b4fa; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#89b4fa bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#89b4fa; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#89b4fa bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+16: 39-50 fg=#cdd6f4 bg=#1e1e2e; 51-54 fg=#cdd6f4 bg=#f5c2e7; 55 fg=#cdd6f4 bg=#1e1e2e; 56-58 fg=#f5c2e7 bg=#1e1e2e; 59-63 fg=#cdd6f4 bg=#1e1e2e; 64-67 fg=#cdd6f4 bg=#f5c2e7; 68 fg=#cdd6f4 bg=#1e1e2e; 69-71 fg=#f5c2e7 bg=#1e1e2e; 72-118 fg=#cdd6f4 bg=#1e1e2e
+17: 7-11 fg=3 bold; 39-118 fg=#cdd6f4 bg=#1e1e2e
+18: 7-11 fg=3 bold
+19: 39-63 bold
+21: 39-118 fg=#4c4f69 bg=#eff1f5
+22: 39-51 fg=#4c4f69 bg=#eff1f5; 52-55 fg=#4c4f69 bg=#4c4f69; 56-118 fg=#4c4f69 bg=#eff1f5
+23: 39-118 fg=#4c4f69 bg=#eff1f5
+24: 39-118 fg=#4c4f69 bg=#eff1f5
+25: 39-118 fg=#4c4f69 bg=#eff1f5
+26: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#5c5f77; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#5c5f77 bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#6c6f85; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#6c6f85 bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+27: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#d20f39; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#d20f39 bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#d20f39; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#d20f39 bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+28: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#40a02b; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#40a02b bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#40a02b; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#40a02b bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+29: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#df8e1d; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#df8e1d bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#df8e1d; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#df8e1d bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+30: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#1e66f5; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#1e66f5 bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#1e66f5; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#1e66f5 bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+31: 39-50 fg=#4c4f69 bg=#eff1f5; 51-54 fg=#4c4f69 bg=#ea76cb; 55 fg=#4c4f69 bg=#eff1f5; 56-58 fg=#ea76cb bg=#eff1f5; 59-63 fg=#4c4f69 bg=#eff1f5; 64-67 fg=#4c4f69 bg=#ea76cb; 68 fg=#4c4f69 bg=#eff1f5; 69-71 fg=#ea76cb bg=#eff1f5; 72-118 fg=#4c4f69 bg=#eff1f5
+32: 39-118 fg=#4c4f69 bg=#eff1f5
+35: 1-9 fg=6; 18-20 fg=6; 29-35 fg=6; 46-50 fg=6; 59-61 fg=6; 71-73 fg=6; 112-113 fg=6

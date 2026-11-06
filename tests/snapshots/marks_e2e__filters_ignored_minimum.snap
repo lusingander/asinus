@@ -1,0 +1,43 @@
+---
+source: tests/marks_e2e.rs
+expression: only.with_styles()
+---
+size: 80x24  cursor: hidden
+ Compare                                                Preview  Palette Small
+ 1 / 348 themes | Name: catpp · Ignored only
+ ──────────────────────────────────────────────────────────────────────────────
+
+ Pin: Catppuccin Frappe                  Current: Catppuccin Frappe
+
+
+   Foreground      #c6d0f5 Aa0             Foreground      #c6d0f5 Aa0
+   Background      #303446                 Background      #303446
+
+
+
+ Matches                       Filters · Draft
+
+  • *- Catppuccin Frappe         Name          catpp
+                                 Appearance    All
+                                 Favorite      All
+                               > Ignored       Only
+
+                                 BG brightness All
+                                 BG color      All
+                                 Text contrast All
+
+ Tab/S-Tab Field  h/l Value  Enter Apply  Esc Cancel  C-c Quit          F1 Help
+
+styles:
+0: 1-55 bold; 65-77 bold
+1: 1 bold; 5-7 bold
+4: 1-22 bold; 41-66 bold
+6: 1-38 fg=#c6d0f5 bg=#303446; 41-78 fg=#c6d0f5 bg=#303446
+7: 1-13 fg=#c6d0f5 bg=#303446; 14-17 fg=#c6d0f5 bg=#c6d0f5; 18-38 fg=#c6d0f5 bg=#303446; 41-53 fg=#c6d0f5 bg=#303446; 54-57 fg=#c6d0f5 bg=#c6d0f5; 58-78 fg=#c6d0f5 bg=#303446
+8: 1-38 fg=#c6d0f5 bg=#303446; 41-78 fg=#c6d0f5 bg=#303446
+9: 1-38 fg=#c6d0f5 bg=#303446; 41-78 fg=#c6d0f5 bg=#303446
+10: 1-38 fg=#c6d0f5 bg=#303446; 41-78 fg=#c6d0f5 bg=#303446
+12: 1-7 bold; 31-45 bold
+14: 7-11 fg=3 bold
+17: 31-46 fg=6 bold; 47-77 bold
+23: 1-9 fg=6; 18-20 fg=6; 29-33 fg=6; 42-44 fg=6; 54-56 fg=6; 72-73 fg=6

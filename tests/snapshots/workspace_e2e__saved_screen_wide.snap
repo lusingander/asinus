@@ -1,0 +1,52 @@
+---
+source: tests/workspace_e2e.rs
+expression: picked.with_styles()
+---
+size: 120x36  cursor: hidden
+ Saved filters
+ 348 themes | Current
+ ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+ Saved filters          2 / 3  Selected filter
+
+  Initial [built-in]           Condition
+  Dark                           type:dark ignore:false
+  Initial                      298 matching themes
+
+                               Current exploration
+
+                               Condition
+                                 ignore:false
+                               348 matching themes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ j/k Move  C-f/C-b Page  g/G Ends  S Save current  e Rename  D Delete  Enter Apply  Esc Back  C-c Quit          F1 Help
+
+styles:
+0: 1-118 bold
+1: 1-3 bold
+4: 1-13 fg=6 bold; 31-45 bold
+7: 1-28 reverse; 33-37 fg=2; 43-49 fg=2
+8: 31-33 bold
+10: 31-49 bold
+13: 33-39 fg=2
+14: 31-33 bold
+35: 1-3 fg=6; 11-17 fg=6; 25-27 fg=6; 35 fg=6; 51 fg=6; 61 fg=6; 71-75 fg=6; 84-86 fg=6; 94-96 fg=6; 112-113 fg=6

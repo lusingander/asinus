@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/charmbracelet/vhs",
+  "revision": "24fa2254a9806091e6ee6a980e9f3bcfe0a9ba53",
+  "path": "themes.json",
+  "import_command": "python3 scripts/import_themes.py",
+  "theme_count": 348
+}

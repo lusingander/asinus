@@ -1,0 +1,45 @@
+---
+source: tests/colors_e2e.rs
+expression: single.with_styles()
+---
+size: 60x22  cursor: hidden
+ Explore                            Preview  Palette
+ 348 themes
+ ──────────────────────────────────────────────────────────
+
+ Color details
+
+  Role            Current: 3024 Day
+  Foreground         #4a4543                               ┃
+  Background         #f7f7f7                               ┃
+  Black              #090300                               ┃
+  Red                #db2d20                               ┃
+  Green              #01a252                               ┃
+  Yellow             #fded02
+  Blue               #01a0e4
+  Magenta            #a16a94
+  Cyan               #b5e4f4
+  White              #a5a2a2
+
+  Foreground      Aa 0123 sample.txt
+  vs own BG       8.82:1 on #f7f7f7
+
+ j/k Roles  Tab Current  Esc Close  q Quit          F1 Help
+
+styles:
+0: 1-35 bold; 45-51 bold
+1: 1-3 bold
+4: 1-13 fg=6 bold
+6: 2-15 bold; 18-56 bold
+7: 1-17 reverse; 18-19 bg=#4a4543; 20-58 reverse
+8: 18-19 bg=#f7f7f7
+9: 18-19 bg=#090300
+10: 18-19 bg=#db2d20
+11: 18-19 bg=#01a252
+12: 18-19 bg=#fded02
+13: 18-19 bg=#01a0e4
+14: 18-19 bg=#a16a94
+15: 18-19 bg=#b5e4f4
+16: 18-19 bg=#a5a2a2
+18: 2-15 bold; 18-56 fg=#4a4543 bg=#f7f7f7
+21: 1-3 fg=6; 12-14 fg=6; 25-27 fg=6; 36 fg=6; 52-53 fg=6
