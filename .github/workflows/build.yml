@@ -55,11 +55,11 @@ jobs:
       - name: Format
         run: cargo fmt --all -- --check
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --locked --verbose
       - name: Lint
-        run: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo clippy --locked --workspace --all-targets -- -D warnings
       - name: Run tests
-        run: cargo test --workspace --verbose
+        run: cargo test --locked --workspace --verbose
 
   theme-generator-checks:
     runs-on: ubuntu-latest
@@ -84,8 +84,8 @@ jobs:
       - name: Format
         run: cargo fmt --all -- --check
       - name: Build
-        run: cargo build --verbose
+        run: cargo build --locked --verbose
       - name: Lint
-        run: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo clippy --locked --workspace --all-targets -- -D warnings
       - name: Run tests
-        run: cargo test --workspace --verbose
+        run: cargo test --locked --workspace --verbose
