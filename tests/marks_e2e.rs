@@ -209,6 +209,7 @@ fn default_storage_respects_data_home_and_is_created_on_first_mark(
         .join("asinus/marks.toml");
     let mut terminal = termlens::bin!(
         "asinus",
+        env_clear(),
         env("HOME", home.path()),
         envs(xdg.into_iter().map(|path| ("XDG_DATA_HOME", path)))
     )?;
