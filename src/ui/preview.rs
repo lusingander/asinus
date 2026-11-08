@@ -75,7 +75,7 @@ fn draw_current_preview(
 ) {
     let focused = app.context() == InputContext::Browse && !app.theme_list_visible();
     let heading_style = if focused {
-        ui_theme.active_style()
+        ui_theme.focus_style()
     } else {
         ui_theme.heading_style()
     };

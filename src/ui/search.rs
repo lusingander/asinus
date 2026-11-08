@@ -138,7 +138,7 @@ pub fn draw_editor(frame: &mut Frame, app: &App, config: &Config, area: Rect, pr
     frame.render_widget(block, area);
     let width = inner.width.saturating_sub(2);
     frame.render_widget(
-        Paragraph::new("/ ").style(theme.active_style()),
+        Paragraph::new("/ ").style(theme.focus_style()),
         Rect::new(inner.x, inner.y, 2, 1),
     );
     draw_input(
@@ -211,7 +211,7 @@ fn draw_filters(frame: &mut Frame, app: &App, config: &Config, area: Rect, previ
         frame.render_widget(
             Paragraph::new(format!("{} {label}", if focused { ">" } else { " " })).style(
                 if focused {
-                    theme.active_style()
+                    theme.focus_style()
                 } else {
                     theme.base_style()
                 },

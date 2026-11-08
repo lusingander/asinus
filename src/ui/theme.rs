@@ -7,6 +7,7 @@ pub struct UiTheme {
     pub heading: Color,
     pub selection_fg: Color,
     pub selection_bg: Color,
+    pub focus: Color,
     pub key: Color,
     pub condition_key: Color,
     pub muted: Color,
@@ -26,6 +27,7 @@ impl Default for UiTheme {
             heading: Color::Reset,
             selection_fg: Color::Reset,
             selection_bg: Color::Reset,
+            focus: Color::Cyan,
             key: Color::Cyan,
             condition_key: Color::Green,
             muted: Color::Reset,
@@ -44,7 +46,17 @@ impl UiTheme {
         self.base_style().fg(self.condition_key)
     }
 
-    pub fn active_style(self) -> Style {
+    pub fn focus_style(self) -> Style {
+        self.base_style()
+            .fg(self.focus)
+            .add_modifier(Modifier::BOLD)
+    }
+
+    pub fn key_style(self) -> Style {
+        Style::default().fg(self.key)
+    }
+
+    pub fn help_key_style(self) -> Style {
         self.base_style().fg(self.key).add_modifier(Modifier::BOLD)
     }
 

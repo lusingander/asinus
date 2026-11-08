@@ -145,7 +145,7 @@ fn draw_header(frame: &mut Frame, area: Rect, app: &App, ui: UiTheme) {
     let title = Line::styled(
         "Color details",
         if app.context() == InputContext::Colors {
-            ui.active_style()
+            ui.focus_style()
         } else {
             ui.heading_style()
         },

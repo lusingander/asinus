@@ -224,7 +224,7 @@ fn draw_preset_selection(
         frame.render_widget(
             Paragraph::new(format!("{} {label}", if focused { ">" } else { " " })).style(
                 if focused {
-                    theme.active_style()
+                    theme.focus_style()
                 } else {
                     theme.base_style()
                 },
@@ -315,7 +315,7 @@ fn draw_themes(
         Line::styled(
             title.trim().to_owned(),
             if app.context() == InputContext::Browse {
-                ui_theme.active_style()
+                ui_theme.focus_style()
             } else {
                 ui_theme.heading_style()
             },

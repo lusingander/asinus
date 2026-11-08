@@ -689,6 +689,36 @@ fn saved_selection_is_visible_in_the_prepared_viewport() {
 }
 
 #[test]
+fn focus_and_shortcut_keys_use_independent_colors() {
+    let mut app = App::default();
+    let mut config = Config::default();
+    config.ui_theme.focus = Color::Magenta;
+    config.ui_theme.key = Color::Green;
+    let mut terminal = Terminal::new(TestBackend::new(80, 24)).unwrap();
+    render(&mut terminal, &mut app, &config);
+
+    let buffer = terminal.backend().buffer();
+    let screen = layout::screen(buffer.area).unwrap();
+    let themes = screen.theme_preview(&app).themes.unwrap();
+    let title = &buffer[(themes.x, themes.y)];
+    assert_eq!((title.symbol(), title.fg), ("T", Color::Magenta));
+    assert!(title.modifier.contains(Modifier::BOLD));
+    let key = &buffer[(screen.footer.x, screen.footer.y)];
+    assert_eq!((key.symbol(), key.fg), ("j", Color::Green));
+    assert!(key.modifier.is_empty());
+
+    app.update(Action::ToggleHelp, screen.visible_rows());
+    render(&mut terminal, &mut app, &config);
+    let buffer = terminal.backend().buffer();
+    let y = (screen.main.y..screen.main.bottom())
+        .find(|&y| row(buffer, y).contains("Select the next theme"))
+        .unwrap();
+    let key = &buffer[(screen.main.x, y)];
+    assert_eq!((key.symbol(), key.fg), ("j", Color::Green));
+    assert!(key.modifier.contains(Modifier::BOLD));
+}
+
+#[test]
 fn custom_bindings_appear_in_footer_notice_and_comparison() {
     let mut app = App::default();
     let config = custom_navigation_config();

@@ -229,7 +229,7 @@ fn draw_header(frame: &mut Frame, app: &App, layout: &ThemeInfoLayout, ui: UiThe
                     InfoSection::Credits => "Credits",
                 },
                 if app.context() == InputContext::ThemeInfo {
-                    ui.active_style()
+                    ui.focus_style()
                 } else {
                     ui.heading_style()
                 },
