@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Asinus Configuration Schema",
+  "description": "Schema for the Asinus TOML configuration file.",
+  "type": "object",
+  "properties": {
+    "ui": { "$ref": "#/definitions/uiSettings" }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "uiSettings": {
+      "type": "object",
+      "properties": {
+        "style": { "$ref": "#/definitions/uiStyles" }
+      },
+      "additionalProperties": false
+    },
+    "uiStyles": {
+      "description": "Styles for the application UI. Omitted colors use the role's built-in color when available and otherwise inherit the base color.",
+      "type": "object",
+      "properties": {
+        "base": { "$ref": "#/definitions/baseStyle" },
+        "heading": {
+          "description": "View and panel headings.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "modifiers": ["bold"] }
+        },
+        "focus": {
+          "description": "The active panel or input control.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "cyan", "modifiers": ["bold"] }
+        },
+        "selection": {
+          "description": "Selected rows and menu items. Set modifiers to an empty array to disable the default reverse video.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "modifiers": ["reverse"] }
+        },
+        "key": {
+          "description": "Shortcut keys in footers and Help. Help uses bold by default.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "cyan" }
+        },
+        "muted": {
+          "description": "Descriptions beside shortcut keys in footers.",
+          "allOf": [{ "$ref": "#/definitions/style" }]
+        },
+        "condition_key": {
+          "description": "Search condition keys such as type:.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "green" }
+        },
+        "search_match": {
+          "description": "Matching text in theme names.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "yellow", "modifiers": ["bold"] }
+        },
+        "comparison_diff": {
+          "description": "Color comparison difference labels.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "yellow" }
+        },
+        "notice": {
+          "description": "Informational notices.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "blue" }
+        },
+        "success": {
+          "description": "Success notices.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "green" }
+        },
+        "warning": {
+          "description": "Warning notices.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "yellow" }
+        },
+        "error": {
+          "description": "Error notices and search input errors. Search input errors use bold by default.",
+          "allOf": [{ "$ref": "#/definitions/style" }],
+          "default": { "fg": "red" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "baseStyle": {
+      "description": "Base foreground and background colors for the application UI.",
+      "type": "object",
+      "properties": {
+        "fg": {
+          "allOf": [{ "$ref": "#/definitions/color" }],
+          "default": "default"
+        },
+        "bg": {
+          "allOf": [{ "$ref": "#/definitions/color" }],
+          "default": "default"
+        }
+      },
+      "additionalProperties": false
+    },
+    "style": {
+      "type": "object",
+      "properties": {
+        "fg": { "$ref": "#/definitions/color" },
+        "bg": { "$ref": "#/definitions/color" },
+        "modifiers": {
+          "description": "Text attributes that replace the default attributes for this role. An empty array clears them. Omit this field to use the default attributes.",
+          "type": "array",
+          "items": {
+            "enum": ["bold", "dim", "underline", "reverse"]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "color": {
+      "description": "An ANSI palette color name, an RGB color in #RRGGBB form, or default for the terminal's default color.",
+      "type": "string",
+      "anyOf": [
+        {
+          "enum": [
+            "default",
+            "black",
+            "red",
+            "green",
+            "yellow",
+            "blue",
+            "magenta",
+            "cyan",
+            "white",
+            "bright_black",
+            "bright_red",
+            "bright_green",
+            "bright_yellow",
+            "bright_blue",
+            "bright_magenta",
+            "bright_cyan",
+            "bright_white"
+          ]
+        },
+        {
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "maxLength": 7
+        }
+      ]
+    }
+  }
+}
