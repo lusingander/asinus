@@ -159,10 +159,7 @@ fn editor_panel(name: &str, error: Option<&str>, width: u16, theme: UiTheme) -> 
     panel_with_title(
         Line::from(vec![
             Span::styled(prefix, theme.heading_style()),
-            Span::styled(
-                theme_label(error, available),
-                theme.heading_style().fg(theme.error),
-            ),
+            Span::styled(theme_label(error, available), theme.search_error_style()),
         ]),
         theme,
     )

@@ -11,7 +11,7 @@ pub fn line(query: &str, theme: UiTheme) -> Line<'static> {
         }
         spans.push(Span::styled(
             query[range.clone()].to_owned(),
-            theme.condition_key_style(),
+            theme.role_style(theme.condition_key),
         ));
         cursor = range.end;
     }
@@ -48,10 +48,8 @@ mod tests {
         #[case] query: &str,
         #[case] expected_keys: &str,
     ) {
-        let theme = UiTheme {
-            condition_key: Color::Magenta,
-            ..UiTheme::default()
-        };
+        let mut theme = UiTheme::default();
+        theme.condition_key.fg = Some(Color::Magenta);
         let line = line(query, theme);
         assert_eq!(
             line.spans

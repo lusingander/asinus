@@ -685,10 +685,13 @@ fn fit(mut groups: Vec<RenderedGroup>, width: u16, theme: UiTheme) -> Line<'stat
             if index > 0 {
                 spans.push(Span::raw("  "));
             }
-            spans.push(Span::styled(group.keys.clone(), theme.key_style()));
+            spans.push(Span::styled(
+                group.keys.clone(),
+                theme.role_style(theme.key),
+            ));
             spans.push(Span::styled(
                 format!(" {}", group.description),
-                Style::default().fg(theme.muted),
+                theme.role_style(theme.muted),
             ));
         }
         let line = Line::from(spans);

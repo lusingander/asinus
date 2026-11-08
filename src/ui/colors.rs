@@ -81,7 +81,7 @@ pub fn draw(frame: &mut Frame, app: &App, layout: &ColorDetailsLayout, ui: UiThe
             Some(relation) => Line::styled(
                 relation_label(relation),
                 if relation == ColorRelation::Different && !selected {
-                    style.fg(ui.comparison_diff)
+                    ui.role_style(ui.comparison_diff)
                 } else {
                     style
                 },
@@ -201,7 +201,7 @@ fn comparison_summary(
         }),
         Span::styled(
             if compact { "D" } else { "Diff" },
-            ui.base_style().fg(ui.comparison_diff),
+            ui.role_style(ui.comparison_diff),
         ),
         Span::raw(if compact {
             format!("{} M{}", counts[1], counts[2])

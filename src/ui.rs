@@ -389,7 +389,7 @@ fn matched_name(
     let style = if selected {
         Style::default()
     } else {
-        ui_theme.match_style()
+        ui_theme.search_match_style()
     };
     let mut spans = Vec::new();
     let mut cursor = 0;
@@ -417,11 +417,12 @@ fn matched_name(
 }
 
 fn footer(app: &App, config: &Config, width: u16) -> Line<'static> {
-    let (message, color) = match &app.notice {
-        Some(Notice::Message(message)) => (message.clone(), config.ui_theme.notice),
-        Some(Notice::Success(message)) => (message.clone(), config.ui_theme.success),
-        Some(Notice::Warning(message)) => (message.clone(), config.ui_theme.warning),
-        Some(Notice::Error(message)) => (format!("Error: {message}"), config.ui_theme.error),
+    let theme = config.ui_theme;
+    let (message, role) = match &app.notice {
+        Some(Notice::Message(message)) => (message.clone(), theme.notice),
+        Some(Notice::Success(message)) => (message.clone(), theme.success),
+        Some(Notice::Warning(message)) => (message.clone(), theme.warning),
+        Some(Notice::Error(message)) => (format!("Error: {message}"), theme.error),
         Some(Notice::PinRequired) => (
             config
                 .keybindings
@@ -430,13 +431,13 @@ fn footer(app: &App, config: &Config, width: u16) -> Line<'static> {
                     || "Pin a theme first".to_owned(),
                     |key| format!("Pin a theme first ({})", key.label()),
                 ),
-            config.ui_theme.warning,
+            theme.warning,
         ),
-        None => return help::footer(app, width, &config.keybindings, config.ui_theme),
+        None => return help::footer(app, width, &config.keybindings, theme),
     };
     Line::styled(
         theme_label(&message, usize::from(width)),
-        config.ui_theme.base_style().fg(color),
+        theme.role_style(role),
     )
 }
 
