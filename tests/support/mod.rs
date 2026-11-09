@@ -20,6 +20,7 @@ pub fn spawn(
     termlens::bin!(
         "asinus",
         size(width, height),
+        env_clear(),
         env("ASINUS_STATE_PATH", marks),
         env("ASINUS_WORKSPACE_PATH", workspace)
     )

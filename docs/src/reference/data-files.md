@@ -1,6 +1,6 @@
 # Data Files
 
-Asinus manages two TOML files:
+Asinus saves application data in two TOML files. For the settings file you edit, see [Configuration](configuration.md).
 
 | File | Contents | Path override |
 | --- | --- | --- |

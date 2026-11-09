@@ -547,7 +547,7 @@ fn help_entry(
     let description_x = key_width + 2;
     if width <= description_x {
         let mut lines = wrap_lines(
-            vec![Line::styled(keys.to_owned(), theme.active_style())],
+            vec![Line::styled(keys.to_owned(), theme.help_key_style())],
             width,
         );
         lines.extend(wrap_words(description, width).into_iter().map(Line::raw));
@@ -564,7 +564,7 @@ fn help_entry(
             let key = keys.get(index).cloned().unwrap_or_default();
             let padding = description_x - Line::raw(&key).width();
             Line::from(vec![
-                Span::styled(key, theme.active_style()),
+                Span::styled(key, theme.help_key_style()),
                 Span::raw(format!(
                     "{}{}",
                     " ".repeat(padding),
@@ -687,11 +687,11 @@ fn fit(mut groups: Vec<RenderedGroup>, width: u16, theme: UiTheme) -> Line<'stat
             }
             spans.push(Span::styled(
                 group.keys.clone(),
-                Style::default().fg(theme.key),
+                theme.role_style(theme.key),
             ));
             spans.push(Span::styled(
                 format!(" {}", group.description),
-                Style::default().fg(theme.muted),
+                theme.role_style(theme.muted),
             ));
         }
         let line = Line::from(spans);

@@ -37,6 +37,7 @@ fn start(path: &Path, width: u16, height: u16) -> termlens::Result<Terminal> {
     let mut terminal = termlens::bin!(
         "asinus",
         size(width, height),
+        env_clear(),
         env("ASINUS_STATE_PATH", path.join("marks.toml")),
         env("ASINUS_WORKSPACE_PATH", path.join("workspace.toml")),
         env("PATH", path),

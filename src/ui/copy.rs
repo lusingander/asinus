@@ -18,7 +18,7 @@ pub fn draw(frame: &mut Frame, app: &App, config: &Config, main: Rect) {
     let width = main.width.min(52).saturating_sub(4);
     let mut lines = vec![Line::styled(
         format!("Target: {}", selection.target.label()),
-        theme.active_style(),
+        theme.focus_style(),
     )];
     lines.extend(wrap_text(
         &format!("Theme: {}", app.copy_theme().unwrap().name),

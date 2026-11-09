@@ -40,7 +40,7 @@ pub fn draw(frame: &mut Frame, app: &App, left: Rect, right: Rect, theme: UiThem
         Line::styled(
             "Saved filters",
             if app.context() == InputContext::Saved {
-                theme.active_style()
+                theme.focus_style()
             } else {
                 theme.heading_style()
             },
@@ -112,7 +112,7 @@ fn filter_dialog(app: &App, main: Rect, theme: UiTheme) -> FilterDialogLayout {
     let mut input_start = None;
     let title = match &dialog.kind {
         DialogKind::New { .. } | DialogKind::Rename { .. } => {
-            let prefix = Line::styled("> Name  ", theme.active_style());
+            let prefix = Line::styled("> Name  ", theme.focus_style());
             input_start = Some((prefix.width() as u16, lines.len() as u16));
             lines.push(prefix);
             if matches!(dialog.kind, DialogKind::New { .. }) {

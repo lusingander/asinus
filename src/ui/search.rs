@@ -138,7 +138,7 @@ pub fn draw_editor(frame: &mut Frame, app: &App, config: &Config, area: Rect, pr
     frame.render_widget(block, area);
     let width = inner.width.saturating_sub(2);
     frame.render_widget(
-        Paragraph::new("/ ").style(theme.active_style()),
+        Paragraph::new("/ ").style(theme.focus_style()),
         Rect::new(inner.x, inner.y, 2, 1),
     );
     draw_input(
@@ -159,10 +159,7 @@ fn editor_panel(name: &str, error: Option<&str>, width: u16, theme: UiTheme) -> 
     panel_with_title(
         Line::from(vec![
             Span::styled(prefix, theme.heading_style()),
-            Span::styled(
-                theme_label(error, available),
-                theme.heading_style().fg(theme.error),
-            ),
+            Span::styled(theme_label(error, available), theme.search_error_style()),
         ]),
         theme,
     )
@@ -211,7 +208,7 @@ fn draw_filters(frame: &mut Frame, app: &App, config: &Config, area: Rect, previ
         frame.render_widget(
             Paragraph::new(format!("{} {label}", if focused { ">" } else { " " })).style(
                 if focused {
-                    theme.active_style()
+                    theme.focus_style()
                 } else {
                     theme.base_style()
                 },

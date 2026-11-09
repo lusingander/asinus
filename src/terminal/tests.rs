@@ -2,6 +2,7 @@ use ratatui::{
     Terminal,
     backend::TestBackend,
     crossterm::event::{KeyCode, KeyModifiers},
+    style::Color,
 };
 use rstest::rstest;
 
@@ -52,7 +53,7 @@ fn browser_opening_uses_the_complete_selected_url_and_preserves_the_panel_on_fai
     render(&mut terminal, &mut app, &config);
     let failed = terminal.backend().buffer();
     let footer = layout::screen(failed.area).unwrap().footer;
-    assert!(failed[(footer.x, footer.y)].fg == config.ui_theme.error);
+    assert_eq!(failed[(footer.x, footer.y)].fg, Color::Red);
     let footer_text: String = (footer.x..footer.right())
         .map(|x| failed[(x, footer.y)].symbol())
         .collect();

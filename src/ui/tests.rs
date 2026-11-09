@@ -688,6 +688,44 @@ fn saved_selection_is_visible_in_the_prepared_viewport() {
     assert!(!text(terminal.backend().buffer()).contains("┃"));
 }
 
+#[rstest]
+#[case(None)]
+#[case(Some(Modifier::UNDERLINED))]
+fn focus_and_shortcut_keys_use_independent_styles(#[case] key_modifiers: Option<Modifier>) {
+    let mut app = App::default();
+    let mut config = Config::default();
+    config.ui_theme.bg = Color::Blue;
+    config.ui_theme.focus.fg = Some(Color::Magenta);
+    config.ui_theme.key.fg = Some(Color::Green);
+    config.ui_theme.key.bg = Some(Color::Reset);
+    config.ui_theme.key.modifiers = key_modifiers;
+    let mut terminal = Terminal::new(TestBackend::new(80, 24)).unwrap();
+    render(&mut terminal, &mut app, &config);
+
+    let buffer = terminal.backend().buffer();
+    let screen = layout::screen(buffer.area).unwrap();
+    let themes = screen.theme_preview(&app).themes.unwrap();
+    let title = &buffer[(themes.x, themes.y)];
+    assert_eq!((title.symbol(), title.fg), ("T", Color::Magenta));
+    assert_eq!(title.bg, Color::Blue);
+    assert!(title.modifier.contains(Modifier::BOLD));
+    let key = &buffer[(screen.footer.x, screen.footer.y)];
+    assert_eq!((key.symbol(), key.fg), ("j", Color::Green));
+    assert_eq!(key.bg, Color::Reset);
+    assert_eq!(key.modifier, key_modifiers.unwrap_or(Modifier::empty()));
+
+    app.update(Action::ToggleHelp, screen.visible_rows());
+    render(&mut terminal, &mut app, &config);
+    let buffer = terminal.backend().buffer();
+    let y = (screen.main.y..screen.main.bottom())
+        .find(|&y| row(buffer, y).contains("Select the next theme"))
+        .unwrap();
+    let key = &buffer[(screen.main.x, y)];
+    assert_eq!((key.symbol(), key.fg), ("j", Color::Green));
+    assert_eq!(key.bg, Color::Reset);
+    assert_eq!(key.modifier, key_modifiers.unwrap_or(Modifier::BOLD));
+}
+
 #[test]
 fn custom_bindings_appear_in_footer_notice_and_comparison() {
     let mut app = App::default();
@@ -862,6 +900,40 @@ fn selection_and_matching_have_distinct_styles_and_aligned_marks() {
         assert_eq!(b[(x, 6)].symbol(), " ");
         assert_eq!(b[(x, 6)].modifier, Modifier::empty());
     }
+}
+
+#[rstest]
+#[case(None, Modifier::REVERSED)]
+#[case(Some(Modifier::empty()), Modifier::empty())]
+fn custom_selection_applies_without_recoloring_preview(
+    #[case] selection_modifiers: Option<Modifier>,
+    #[case] expected_modifiers: Modifier,
+) {
+    let mut app = App::default();
+    let mut config = Config::default();
+    config.ui_theme.bg = Color::Yellow;
+    config.ui_theme.selection.fg = Some(Color::Black);
+    config.ui_theme.selection.bg = Some(Color::Blue);
+    config.ui_theme.selection.modifiers = selection_modifiers;
+    let mut terminal = Terminal::new(TestBackend::new(80, 24)).unwrap();
+    render(&mut terminal, &mut app, &config);
+
+    let buffer = terminal.backend().buffer();
+    let screen = layout::screen(buffer.area).unwrap();
+    let view = screen.theme_preview(&app);
+    let list = panel("", config.ui_theme).inner(view.themes.unwrap());
+    for x in list.x..list.right() {
+        let cell = &buffer[(x, list.y)];
+        assert_eq!((cell.fg, cell.bg), (Color::Black, Color::Blue));
+        assert_eq!(cell.modifier, expected_modifiers);
+    }
+    assert_eq!(buffer[(list.x, list.y + 1)].bg, Color::Yellow);
+
+    let theme = app.theme().unwrap();
+    let sample = &buffer[(view.preview.x, view.preview.y + 2)];
+    assert_eq!(sample.fg, Color::from(theme.foreground));
+    assert_eq!(sample.bg, Color::from(theme.background));
+    assert!(sample.modifier.is_empty());
 }
 
 #[rstest]
@@ -1459,7 +1531,7 @@ fn modals_keep_reset_borders_and_clear_padding_and_restore_the_original_view(
         }
     }
     let mut config = Config::default();
-    config.ui_theme.condition_key = Color::Magenta;
+    config.ui_theme.condition_key.fg = Some(Color::Magenta);
     let mut t = Terminal::new(TestBackend::new(w, h)).unwrap();
     render(&mut t, &mut app, &config);
     let before = t.backend().buffer().clone();

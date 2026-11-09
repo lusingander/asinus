@@ -19,20 +19,30 @@ mod workspace;
 #[cfg(test)]
 mod test_support;
 
-use std::io;
+use std::{error::Error, process::ExitCode};
 
 use clap::Parser;
 
-use crate::{app::App, config::Config, marks::MarkStore, workspace::WorkspaceStore};
+use crate::{app::App, marks::MarkStore, workspace::WorkspaceStore};
 
 /// Terminal Color Theme Explorer 🫏
 #[derive(Parser)]
 #[command(version)]
 struct Cli {}
 
-fn main() -> io::Result<()> {
+fn main() -> ExitCode {
     Cli::parse();
+    match run() {
+        Ok(()) => ExitCode::SUCCESS,
+        Err(error) => {
+            eprintln!("asinus: {error}");
+            ExitCode::FAILURE
+        }
+    }
+}
 
+fn run() -> Result<(), Box<dyn Error>> {
+    let config = config::load()?;
     let mut store = MarkStore::from_env()?;
     let mut workspace_store = WorkspaceStore::from_env()?;
     let (marks, marks_error) = store.load();
@@ -48,5 +58,6 @@ fn main() -> io::Result<()> {
     } else {
         Some((store, workspace_store))
     };
-    terminal::run(app, Config::default(), stores)
+    terminal::run(app, config, stores)?;
+    Ok(())
 }

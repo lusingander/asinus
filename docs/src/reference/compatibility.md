@@ -6,7 +6,7 @@ Asinus targets macOS and Linux. Windows is not currently supported.
 
 Use a terminal with True Color (24-bit RGB) support and at least **60 columns × 22 rows**. Larger windows give previews more room. Some panels fill the screen at smaller sizes, and preview content may be clipped.
 
-The surrounding UI uses your terminal's colors; previews use the selected theme's RGB colors. Text attributes such as bold and dim depend on terminal settings.
+The surrounding UI uses your terminal's colors by default. Preview samples use the selected theme's RGB colors. Text attributes such as bold and dim depend on terminal settings. To customize the UI, see [Configuration](configuration.md).
 
 ## Clipboard
 
