@@ -50,6 +50,8 @@ In Explore / Compare:
 
 See [Explore & Compare](https://lusingander.github.io/asinus/features/explore-compare.html) for previews and [Keybindings](https://lusingander.github.io/asinus/reference/keybindings.html) for all controls.
 
+To customize UI colors and text styles, see [Configuration](https://lusingander.github.io/asinus/reference/configuration.html).
+
 ## License
 
 Asinus is distributed under the [MIT License](./LICENSE).

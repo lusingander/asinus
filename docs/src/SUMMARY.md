@@ -13,5 +13,6 @@
 # Reference
 
 - [Keybindings](reference/keybindings.md)
+- [Configuration](reference/configuration.md)
 - [Data Files](reference/data-files.md)
 - [Compatibility](reference/compatibility.md)
