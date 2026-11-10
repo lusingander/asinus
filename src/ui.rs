@@ -393,7 +393,7 @@ fn matched_name(
     };
     let mut spans = Vec::new();
     let mut cursor = 0;
-    for range in ranges {
+    for range in &ranges {
         let start = range.start.min(end);
         let stop = range.end.min(end);
         if cursor < start {
@@ -411,7 +411,12 @@ fn matched_name(
         spans.push(Span::raw(name[cursor..end].to_owned()));
     }
     if end < name.len() {
-        spans.push(Span::raw(label[end..].to_owned()));
+        let ellipsis_style = if ranges.iter().any(|range| range.end > end) {
+            style
+        } else {
+            Style::default()
+        };
+        spans.push(Span::styled(label[end..].to_owned(), ellipsis_style));
     }
     spans
 }

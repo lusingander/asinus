@@ -903,6 +903,43 @@ fn selection_and_matching_have_distinct_styles_and_aligned_marks() {
 }
 
 #[rstest]
+#[case(10, "青carbon", false, "青Carbon..", "青Carbon")]
+#[case(10, "carbontransparent", false, "青Carbon..", "Carbon..")]
+#[case(10, "inverse", false, "青Carbon..", "..")]
+#[case(10, "type:dark", false, "青Carbon..", "")]
+#[case(10, "carbontransparent", true, "青Carbon..", "")]
+#[case(1, "inverse", false, ".", ".")]
+#[case(0, "inverse", false, "", "")]
+#[case(26, "inverse", false, "青CarbonTransparentInverse", "Inverse")]
+fn theme_name_highlighting_covers_matches_in_the_omitted_suffix(
+    #[case] width: usize,
+    #[case] query: &str,
+    #[case] selected: bool,
+    #[case] label: &str,
+    #[case] highlighted: &str,
+) {
+    let filter = crate::search::Filter::parse(query).unwrap();
+    let theme = UiTheme::default();
+    let line = Line::from(matched_name(
+        "青CarbonTransparentInverse",
+        width,
+        Some(&filter),
+        selected,
+        theme,
+    ));
+
+    assert_eq!(line.to_string(), label);
+    assert_eq!(
+        line.spans
+            .iter()
+            .filter(|span| span.style == theme.search_match_style())
+            .map(|span| span.content.as_ref())
+            .collect::<String>(),
+        highlighted
+    );
+}
+
+#[rstest]
 #[case(None, Modifier::REVERSED)]
 #[case(Some(Modifier::empty()), Modifier::empty())]
 fn custom_selection_applies_without_recoloring_preview(
