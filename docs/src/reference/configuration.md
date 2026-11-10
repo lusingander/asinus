@@ -59,4 +59,4 @@ Color values are strings. Use `"default"` for the terminal's default color or `"
 
 Styles other than `base` also accept a `modifiers` array with `"bold"`, `"dim"`, `"underline"`, and `"reverse"`. An explicit array replaces the default attributes, and `[]` clears them. Omit the array to keep the default attributes.
 
-For editor validation, see the [configuration schema](https://github.com/lusingander/asinus/blob/master/config.json.schema).
+For editor validation, see the [configuration schema](https://github.com/lusingander/asinus/blob/master/config.schema.json).
