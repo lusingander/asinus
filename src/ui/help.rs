@@ -10,6 +10,7 @@ use crate::{
     app::{Action, App, InputContext, saved::DialogKind},
     config::Config,
     keybindings::{KeyBindings, KeyChord},
+    preview::Sample,
     ui::{
         theme::UiTheme,
         widgets::{draw_scrollbar, panel},
@@ -227,8 +228,13 @@ fn groups(app: &App, context: InputContext) -> Vec<HelpGroup> {
             }
         }
         InputContext::Preset => {
+            if app
+                .preview_selection
+                .is_some_and(|selection| selection.sample != Sample::Custom)
+            {
+                groups.push(group("Selection", &[FieldNext, FieldPrevious], "Field", 2));
+            }
             groups.extend([
-                group("Selection", &[FieldNext, FieldPrevious], "Field", 2),
                 group("Selection", &[ValuePrevious, ValueNext], "Value", 2),
                 group("Selection", &[Confirm], "Use", 1),
                 group("Selection", &[Cancel], "Cancel", 1),

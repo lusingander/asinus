@@ -100,6 +100,7 @@ fn switches_between_custom_and_built_in_previews() -> termlens::Result<()> {
         screen::focused_field_value(s, "Sample", "Custom")
     })?;
     assert!(!selector.contains("Content"));
+    assert!(!selector.contains("Tab Field"));
     terminal.send(Key::Tab)?;
     terminal.send(Key::Left)?;
     wait_for(&mut terminal, |s| {
