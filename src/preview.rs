@@ -12,6 +12,32 @@ use serde::{Deserialize, Serialize};
 
 use crate::theme::Theme;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Sample {
+    BuiltIn(Preset),
+    Custom,
+}
+
+impl Sample {
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::BuiltIn(preset) => preset.name(),
+            Self::Custom => "Custom",
+        }
+    }
+
+    pub fn adjacent(self, forward: bool, has_custom: bool) -> Self {
+        match (self, forward, has_custom) {
+            (Self::BuiltIn(Preset::Code), true, true)
+            | (Self::BuiltIn(Preset::Palette), false, true) => Self::Custom,
+            (Self::Custom, true, _) => Self::BuiltIn(Preset::Palette),
+            (Self::Custom, false, _) => Self::BuiltIn(Preset::Code),
+            (Self::BuiltIn(preset), true, _) => Self::BuiltIn(preset.next()),
+            (Self::BuiltIn(preset), false, _) => Self::BuiltIn(preset.previous()),
+        }
+    }
+}
+
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Preset {

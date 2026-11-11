@@ -24,7 +24,7 @@ use ratatui::{
 use crate::{
     app::{Action, App, InputContext, Notice, preview::PreviewField},
     config::Config,
-    preview::{ContentSize, SampleSize},
+    preview::{ContentSize, Sample, SampleSize},
     ui::{
         layout::{MIN_HEIGHT, MIN_WIDTH, SCREEN_MARGIN},
         theme::UiTheme,
@@ -100,6 +100,7 @@ pub fn draw(frame: &mut Frame, app: &App, config: &Config) {
     };
     let resolved = layout
         .preview(app)
+        .filter(|_| app.preview_sample != Sample::Custom)
         .map(|area| preview::size(area, app, app.preview_content));
     draw_header(frame, app, layout.header, resolved, ui_theme);
     search::draw_query(frame, app, layout.query, ui_theme);
@@ -158,7 +159,7 @@ pub fn draw(frame: &mut Frame, app: &App, config: &Config) {
         preview::draw(frame, preview_layout.preview, app, ui_theme);
     }
     saved::draw_dialog(frame, app, layout.main, config);
-    draw_preset_selection(frame, app, &layout, config);
+    draw_preview_selection(frame, app, &layout, config);
     copy::draw(frame, app, config, layout.main);
     help::draw(frame, app, config, layout.main);
     frame.render_widget(
@@ -186,8 +187,8 @@ fn draw_header(
         area,
     );
     let value = resolved.map_or_else(
-        || app.preset.name().to_owned(),
-        |size| format!("{} {}", app.preset.name(), size.name()),
+        || app.preview_sample.name().to_owned(),
+        |size| format!("{} {}", app.preview_sample.name(), size.name()),
     );
     frame.render_widget(
         Paragraph::new(Line::from(vec![
@@ -199,24 +200,26 @@ fn draw_header(
     );
 }
 
-fn draw_preset_selection(
+fn draw_preview_selection(
     frame: &mut Frame,
     app: &App,
     screen: &layout::ScreenLayout,
     config: &Config,
 ) {
-    let Some(selected) = app.preset_selection else {
+    let Some(selected) = app.preview_selection else {
         return;
     };
     let theme = config.ui_theme;
     let layout = layout::modal(screen.main, 52, 4);
     draw_modal(frame, &layout, "Select preview", theme);
     let inner = layout.content;
+    let has_content_size = selected.sample != Sample::Custom;
     for (index, (label, field, value)) in [
-        ("Sample", PreviewField::Sample, selected.preset.name()),
+        ("Sample", PreviewField::Sample, selected.sample.name()),
         ("Content", PreviewField::Content, selected.content.name()),
     ]
     .into_iter()
+    .take(if has_content_size { 2 } else { 1 })
     .enumerate()
     {
         let focused = selected.field == field;
@@ -240,7 +243,7 @@ fn draw_preset_selection(
             Rect::new(inner.x + 14, y, inner.width.saturating_sub(14), 1),
         );
     }
-    if let Some(area) = screen.preview(app) {
+    if has_content_size && let Some(area) = screen.preview(app) {
         let size = preview::size(area, app, selected.content);
         let (width, height) = size.dimensions();
         let label = if selected.content == ContentSize::Auto {

@@ -12,7 +12,7 @@ use super::*;
 use crate::{
     app::{Action, InputContext},
     marks::{Mark, MarkChange},
-    preview::Preset,
+    preview::{Preset, Sample},
     test_support::{custom_navigation_config, insert_text, render},
     ui::widgets::panel,
     workspace::WorkspaceChange,
@@ -1441,7 +1441,7 @@ fn search_previews_keep_visible_content_at_width_and_height_boundaries(
 ) {
     let mut app = crate::test_support::comparison_in_context(InputContext::Query);
     app.compare_direction = direction;
-    app.preset = Preset::Code;
+    app.preview_sample = Sample::BuiltIn(Preset::Code);
     let mut terminal = Terminal::new(TestBackend::new(width, height)).unwrap();
     render(&mut terminal, &mut app, &Config::default());
     let buffer = terminal.backend().buffer();
@@ -1795,7 +1795,7 @@ fn auto_preview_uses_content_dimensions_and_a_shared_comparison_size(
     #[case] copies: usize,
 ) {
     let mut app = App::default();
-    app.preset = Preset::Git;
+    app.preview_sample = Sample::BuiltIn(Preset::Git);
     if compare {
         app.update(Action::TogglePin, 14);
         app.update(Action::Next, 14);
@@ -1882,7 +1882,7 @@ fn log_and_code_roles_use_the_selected_theme_palette(
     #[case] index: usize,
 ) {
     let mut app = App::default();
-    app.preset = preset;
+    app.preview_sample = Sample::BuiltIn(preset);
     app.preview_content = crate::preview::ContentSize::Large;
     let mut terminal = Terminal::new(TestBackend::new(120, 36)).unwrap();
     for theme_index in [0, 49] {
@@ -1922,7 +1922,7 @@ fn tui_backgrounds_share_sample_width_and_reset_outside_highlighted_rows(
     #[case] width: u16,
 ) {
     let mut app = App::default();
-    app.preset = Preset::Tui;
+    app.preview_sample = Sample::BuiltIn(Preset::Tui);
     app.preview_content = size;
     let mut terminal = Terminal::new(TestBackend::new(120, 36)).unwrap();
     render(&mut terminal, &mut app, &Config::default());
@@ -1966,7 +1966,7 @@ fn tui_backgrounds_share_sample_width_and_reset_outside_highlighted_rows(
     assert_eq!(buffer[(x, y)].bg, background);
     assert!(buffer[(x, y)].modifier.is_empty());
 
-    app.preset = Preset::Code;
+    app.preview_sample = Sample::BuiltIn(Preset::Code);
     render(&mut terminal, &mut app, &Config::default());
     let buffer = terminal.backend().buffer();
     for y in title_y..title_y + 24 {

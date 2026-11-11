@@ -195,7 +195,7 @@ impl App {
         if self.copy_selection.is_some() {
             return InputContext::Copy;
         }
-        if self.preset_selection.is_some() {
+        if self.preview_selection.is_some() {
             return InputContext::Preset;
         }
         if let Some(dialog) = &self.dialog {

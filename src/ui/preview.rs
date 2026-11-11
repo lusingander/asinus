@@ -1,6 +1,6 @@
 use ratatui::{
     Frame,
-    layout::{Margin, Rect},
+    layout::{Margin, Rect, Size},
     style::{Color, Style},
     text::{Line, Span},
     widgets::{Block, Paragraph},
@@ -8,7 +8,7 @@ use ratatui::{
 
 use crate::{
     app::{App, InputContext, theme_target::ThemeTarget},
-    preview::{self, ContentSize, Preset, SampleSize},
+    preview::{self, ContentSize, Sample, SampleSize},
     theme::Theme,
     ui::{
         layout,
@@ -18,15 +18,15 @@ use crate::{
 };
 
 pub fn draw(frame: &mut Frame, area: Rect, app: &App, theme: UiTheme) {
-    let size = size(area, app, app.preview_content);
+    let dimensions = shared_dimensions(area, app);
     if app.mode.is_compare() {
         let [pin, current_area] = layout::comparison(area, app.compare_direction);
         draw_preview(
             frame,
             pin,
             app.pinned_theme().expect("comparison has a pinned theme"),
-            app.preset,
-            size,
+            app,
+            dimensions,
             Line::styled(
                 theme_title(
                     ThemeTarget::Pin,
@@ -37,9 +37,9 @@ pub fn draw(frame: &mut Frame, area: Rect, app: &App, theme: UiTheme) {
             ),
             theme,
         );
-        draw_current_preview(frame, current_area, app, size, theme);
+        draw_current_preview(frame, current_area, app, dimensions, theme);
     } else {
-        draw_current_preview(frame, area, app, size, theme);
+        draw_current_preview(frame, area, app, dimensions, theme);
     }
 }
 
@@ -57,20 +57,25 @@ fn sample_area(area: Rect) -> Rect {
 }
 
 pub fn size(area: Rect, app: &App, content: ContentSize) -> SampleSize {
+    let Size { width, height } = shared_dimensions(area, app);
+    content.resolve(width, height)
+}
+
+fn shared_dimensions(area: Rect, app: &App) -> Size {
     let panes = if app.mode.is_compare() {
         layout::comparison(area, app.compare_direction)
     } else {
         [area, area]
     };
     let [a, b] = panes.map(content_area);
-    content.resolve(a.width.min(b.width), a.height.min(b.height))
+    Size::new(a.width.min(b.width), a.height.min(b.height))
 }
 
 fn draw_current_preview(
     frame: &mut Frame,
     area: Rect,
     app: &App,
-    size: SampleSize,
+    dimensions: Size,
     ui_theme: UiTheme,
 ) {
     let focused = app.context() == InputContext::Browse && !app.theme_list_visible();
@@ -102,7 +107,7 @@ fn draw_current_preview(
         )
     };
     if let Some(theme) = app.theme() {
-        draw_preview(frame, area, theme, app.preset, size, title, ui_theme);
+        draw_preview(frame, area, theme, app, dimensions, title, ui_theme);
     } else {
         let block = panel_with_title(title, ui_theme);
         let inner = block.inner(area);
@@ -120,14 +125,29 @@ fn draw_preview(
     frame: &mut Frame,
     area: Rect,
     theme: &Theme,
-    preset: Preset,
-    size: SampleSize,
+    app: &App,
+    dimensions: Size,
     title: Line<'static>,
     ui_theme: UiTheme,
 ) {
     let sample_area = sample_area(area);
-    let content = content_area(area);
-    let lines = preview::lines(theme, preset, size);
+    let mut content = content_area(area);
+    let lines = match app.preview_sample {
+        Sample::BuiltIn(preset) => {
+            let size = app
+                .preview_content
+                .resolve(dimensions.width, dimensions.height);
+            preview::lines(theme, preset, size)
+        }
+        Sample::Custom => {
+            content.width = dimensions.width;
+            content.height = dimensions.height;
+            app.custom_preview
+                .as_ref()
+                .expect("custom preview is available")
+                .lines(theme, content.height)
+        }
+    };
     frame.render_widget(panel_with_title(title, ui_theme), area);
     let style = Style::reset()
         .fg(Color::from(theme.foreground))

@@ -1,6 +1,7 @@
 use crate::{
     app::{App, Notice},
     marks::Marks,
+    preview::Sample,
     search::Filter,
     workspace::{Workspace, WorkspaceAction, WorkspaceChange},
 };
@@ -11,7 +12,7 @@ impl App {
         self.notice = read_error.map(|reason| Notice::Warning(format!("Read-only: {reason}")));
         self.marks = marks;
         self.session = workspace.session.clone();
-        self.preset = self.session.preset;
+        self.preview_sample = Sample::BuiltIn(self.session.preset);
         self.preview_content = self.session.preview_content;
         self.compare_direction = self.session.layout.into();
         let query = self.session.query.as_deref().unwrap_or("ignore:false");
