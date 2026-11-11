@@ -38,7 +38,7 @@ use crate::{
 #[command(version)]
 struct Cli {
     /// Use a UTF-8 file as the preview for this run (- reads stdin)
-    #[arg(long, value_name = "FILE")]
+    #[arg(short = 'p', long, value_name = "FILE")]
     preview: Option<PathBuf>,
 }
 

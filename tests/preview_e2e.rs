@@ -85,7 +85,7 @@ fn switches_between_custom_and_built_in_previews() -> termlens::Result<()> {
         env_clear(),
         env("ASINUS_STATE_PATH", dir.path().join("marks.toml")),
         env("ASINUS_WORKSPACE_PATH", dir.path().join("workspace.toml")),
-        arg("--preview"),
+        arg("-p"),
         arg(&sample)
     )?;
     support::wait_for_explore(&mut terminal)?;
