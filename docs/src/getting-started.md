@@ -44,4 +44,6 @@ asinus
 3. Use `[` / `]` to switch preview samples, or `/` to search.
 4. Press `F1` for help and `Ctrl-C` to quit.
 
-Continue with [Explore & Compare](features/explore-compare.md), or see [Keybindings](reference/keybindings.md) for all controls. Run `asinus --help` for command line help and `asinus --version` to check the installed version.
+Continue with [Explore & Compare](features/explore-compare.md) or try [your own preview sample](features/explore-compare.md#custom-samples). See [Keybindings](reference/keybindings.md) for all controls.
+
+Run `asinus --help` for command line help and `asinus --version` to check the installed version.

@@ -6,7 +6,7 @@ Asinus is a TUI application for exploring, previewing, and comparing terminal co
 
 ## Key Features
 
-- Preview themes with built-in terminal samples and compare them side by side.
+- Preview themes with built-in samples or your own text, and compare them side by side.
 - Search by name, appearance, background color, brightness, and text contrast.
 - Inspect color values and credits, mark favorites, and save search conditions.
 
