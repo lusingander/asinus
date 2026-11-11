@@ -1,6 +1,7 @@
 mod code;
 pub mod custom;
 mod git;
+pub mod input;
 mod logs;
 mod palette;
 mod shell;
