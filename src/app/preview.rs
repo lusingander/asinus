@@ -17,6 +17,15 @@ pub struct PreviewSelection {
 }
 
 impl App {
+    pub fn select_preset(&mut self, preset: Preset, content: ContentSize) {
+        self.preset = preset;
+        self.preview_content = content;
+        if !self.read_only {
+            self.session.preset = preset;
+        }
+        self.record_session(false);
+    }
+
     pub fn open_preview(&mut self) {
         self.preset_selection = Some(PreviewSelection {
             preset: self.preset,
@@ -62,9 +71,7 @@ impl App {
             Action::Confirm => {
                 let selection = self.preset_selection.take().unwrap();
                 if self.preset != selection.preset || self.preview_content != selection.content {
-                    self.preset = selection.preset;
-                    self.preview_content = selection.content;
-                    self.record_session(false);
+                    self.select_preset(selection.preset, selection.content);
                 }
             }
             Action::Cancel => self.preset_selection = None,

@@ -319,12 +319,12 @@ impl App {
                 *visible = !*visible;
             }
             Action::PresetPrevious | Action::PresetNext => {
-                self.preset = if action == Action::PresetNext {
+                let preset = if action == Action::PresetNext {
                     self.preset.next()
                 } else {
                     self.preset.previous()
                 };
-                self.record_session(false);
+                self.select_preset(preset, self.preview_content);
             }
             Action::ToggleFavorite | Action::ToggleIgnore => {
                 self.update_marks(action);

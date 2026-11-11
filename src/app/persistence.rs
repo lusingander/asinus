@@ -28,7 +28,6 @@ impl App {
         if condition && (self.session.query.is_some() || !self.filter.is_default()) {
             self.session.query = Some(self.filter.query());
         }
-        self.session.preset = self.preset;
         self.session.preview_content = self.preview_content;
         self.session.layout = self.compare_direction.into();
         if self.session != self.workspace.session {
