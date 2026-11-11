@@ -120,6 +120,11 @@ impl Perform for SampleParser {
                 [48, ref color @ ..] => {
                     extended_color(color, &mut params).map_or(style, |color| style.bg(color))
                 }
+                [58, ref color @ ..] => {
+                    // Consume underline color parameters even though only foreground and background are used.
+                    let _ = extended_color(color, &mut params);
+                    style
+                }
                 [39] => Style { fg: None, ..style },
                 [49] => Style { bg: None, ..style },
                 _ => style,
@@ -213,6 +218,21 @@ mod tests {
                 .contains(Modifier::BOLD)
         );
         assert_eq!(lines[1].spans[2].style, Style::new());
+    }
+
+    #[test]
+    fn unsupported_underline_colors_do_not_apply_other_attributes() {
+        let sample = CustomPreview::parse("\x1b[1;58;5;42;31mA\x1b[58;2;0;0;0mB");
+        let lines = sample.lines(&THEMES[0], 1);
+        assert_eq!(lines[0].spans.len(), 1);
+        let span = &lines[0].spans[0];
+        assert_eq!(span.content, "AB");
+        assert_eq!(
+            span.style,
+            Style::new()
+                .fg(THEMES[0].palette.normal[1].into())
+                .add_modifier(Modifier::BOLD)
+        );
     }
 
     #[test]
