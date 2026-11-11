@@ -88,7 +88,7 @@ Modified keys depend on terminal settings. See [Compatibility](compatibility.md#
 
 | Keys | Action |
 | --- | --- |
-| `Tab` / `Shift-Tab` | Switch between Sample and Content |
+| `Tab` / `Shift-Tab` | Switch between Sample and Content for built-in samples |
 | `←` / `h`, `→` / `l` | Change the selected value |
 | `Enter` | Apply the settings |
 
