@@ -1,7 +1,10 @@
 #[cfg(test)]
 mod tests;
 
-use std::{io, time::Duration};
+use std::{
+    io::{self, IsTerminal},
+    time::Duration,
+};
 
 use ratatui::{
     DefaultTerminal,
@@ -21,6 +24,28 @@ use crate::{
     ui::layout,
     workspace::{WorkspaceAction, WorkspaceStore},
 };
+
+pub fn ensure_available() -> io::Result<()> {
+    if !io::stdout().is_terminal() {
+        return Err(io::Error::other(
+            "the preview requires a terminal on stdout",
+        ));
+    }
+    #[cfg(unix)]
+    if !io::stdin().is_terminal() {
+        std::fs::File::options()
+            .read(true)
+            .write(true)
+            .open("/dev/tty")
+            .map_err(|error| {
+                io::Error::new(
+                    error.kind(),
+                    format!("could not open the controlling terminal: {error}"),
+                )
+            })?;
+    }
+    Ok(())
+}
 
 pub fn run(
     mut app: App,

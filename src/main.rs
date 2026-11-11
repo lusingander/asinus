@@ -19,17 +19,25 @@ mod workspace;
 #[cfg(test)]
 mod test_support;
 
-use std::{error::Error, fs::File, path::PathBuf, process::ExitCode};
+use std::{
+    error::Error,
+    fs::File,
+    io,
+    path::{Path, PathBuf},
+    process::ExitCode,
+};
 
 use clap::Parser;
 
-use crate::{app::App, marks::MarkStore, workspace::WorkspaceStore};
+use crate::{
+    app::App, marks::MarkStore, preview::custom::CustomPreview, workspace::WorkspaceStore,
+};
 
 /// Terminal Color Theme Explorer 🫏
 #[derive(Parser)]
 #[command(version)]
 struct Cli {
-    /// Use a UTF-8 file as the preview for this run
+    /// Use a UTF-8 file as the preview for this run (- reads stdin)
     #[arg(long, value_name = "FILE")]
     preview: Option<PathBuf>,
 }
@@ -48,11 +56,8 @@ fn run(cli: Cli) -> Result<(), Box<dyn Error>> {
     let config = config::load()?;
     let custom_preview = cli
         .preview
-        .map(|path| {
-            File::open(&path)
-                .and_then(preview::input::read)
-                .map_err(|error| format!("could not read preview file {path:?}: {error}"))
-        })
+        .as_deref()
+        .map(load_custom_preview)
         .transpose()?;
     let mut store = MarkStore::from_env()?;
     let mut workspace_store = WorkspaceStore::from_env()?;
@@ -74,4 +79,17 @@ fn run(cli: Cli) -> Result<(), Box<dyn Error>> {
     };
     terminal::run(app, config, stores)?;
     Ok(())
+}
+
+fn load_custom_preview(path: &Path) -> Result<CustomPreview, Box<dyn Error>> {
+    if path.as_os_str() == "-" {
+        terminal::ensure_available()?;
+        return preview::input::read(io::stdin().lock())
+            .map_err(|error| format!("could not read preview from stdin: {error}").into());
+    }
+    let sample = File::open(path)
+        .and_then(preview::input::read)
+        .map_err(|error| format!("could not read preview file {path:?}: {error}"))?;
+    terminal::ensure_available()?;
+    Ok(sample)
 }

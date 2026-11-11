@@ -134,3 +134,49 @@ fn rejects_invalid_preview_files(#[case] input: Option<Vec<u8>>, #[case] expecte
     let error = String::from_utf8(output.stderr).unwrap();
     assert!(error.contains(expected), "{error}");
 }
+
+#[test]
+#[cfg(any(target_os = "macos", target_os = "linux"))]
+fn stdin_preview_accepts_keys_and_resizes_after_eof() -> termlens::Result<()> {
+    let dir = tempfile::tempdir().unwrap();
+    let mut terminal = termlens::Terminal::builder()
+        .size(80, 24)
+        .env_clear()
+        .env("ASINUS_STATE_PATH", dir.path().join("marks.toml"))
+        .env("ASINUS_WORKSPACE_PATH", dir.path().join("workspace.toml"))
+        .env("ASINUS_BIN", env!("CARGO_BIN_EXE_asinus"))
+        .args([
+            "-c",
+            r#"printf '\033[32mPiped sample\033[0m\n' | "$ASINUS_BIN" --preview -"#,
+        ])
+        .spawn("/bin/sh")?;
+    let initial = support::wait_for_explore(&mut terminal)?;
+    assert!(initial.row_text(0).contains("Preview  Custom"));
+    let (row, column) = initial.find("Piped sample").unwrap();
+    assert_eq!(
+        initial.cell(row, column).unwrap().style().fg,
+        Color::Rgb(1, 162, 82)
+    );
+    terminal.send_str("pjjc")?;
+    wait_for(&mut terminal, |s| s.find_all("Piped sample").len() == 2)?;
+    support::resize_and_wait(&mut terminal, 100, 30, |s| {
+        s.find_all("Piped sample").len() == 2
+    })?;
+    quit(&mut terminal)
+}
+
+#[test]
+fn stdin_preview_requires_a_terminal() {
+    let output = Command::new(env!("CARGO_BIN_EXE_asinus"))
+        .env_clear()
+        .args(["--preview", "-"])
+        .output()
+        .unwrap();
+    assert!(!output.status.success());
+    assert!(output.stdout.is_empty());
+    let error = String::from_utf8(output.stderr).unwrap();
+    assert!(
+        error.contains("the preview requires a terminal on stdout"),
+        "{error}"
+    );
+}
