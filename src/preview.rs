@@ -1,4 +1,5 @@
 mod code;
+pub mod custom;
 mod git;
 mod logs;
 mod palette;
