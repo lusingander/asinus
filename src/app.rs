@@ -27,7 +27,7 @@ use crate::{
         saved::{FilterDialog, SavedScreen},
     },
     marks::{MarkChange, Marks},
-    preview::{ContentSize, Preset},
+    preview::{ContentSize, Preset, Sample, custom::CustomPreview},
     search::Filter,
     theme::{self, Theme},
     workspace::{Session, Workspace, WorkspaceAction},
@@ -72,7 +72,7 @@ pub struct App {
     pub browser_action: Option<String>,
     pub copy_selection: Option<CopySelection>,
     pub copy_action: Option<CopyRequest>,
-    pub preset_selection: Option<crate::app::preview::PreviewSelection>,
+    pub preview_selection: Option<crate::app::preview::PreviewSelection>,
     pub help: Option<HelpScreen>,
     pub saved: Option<SavedScreen>,
     pub dialog: Option<FilterDialog>,
@@ -89,7 +89,8 @@ pub struct App {
     pub filter: Filter,
     pub editor: Option<Editor>,
     pub theme_list: ListState,
-    pub preset: Preset,
+    pub preview_sample: Sample,
+    pub custom_preview: Option<CustomPreview>,
     pub preview_content: ContentSize,
     pub mode: Mode,
     pub compare_direction: Direction,
@@ -110,7 +111,7 @@ impl Default for App {
             browser_action: None,
             copy_selection: None,
             copy_action: None,
-            preset_selection: None,
+            preview_selection: None,
             help: None,
             saved: None,
             dialog: None,
@@ -127,7 +128,8 @@ impl Default for App {
             filter: Filter::default(),
             editor: None,
             theme_list: ListState::default().with_selected(Some(0)),
-            preset: Preset::Palette,
+            preview_sample: Sample::BuiltIn(Preset::default()),
+            custom_preview: None,
             preview_content: ContentSize::Auto,
             mode: Mode::Explore,
             compare_direction: Direction::Horizontal,
@@ -260,7 +262,7 @@ impl App {
             }
             return;
         }
-        if self.preset_selection.is_some() {
+        if self.preview_selection.is_some() {
             self.update_preview(action);
             return;
         }
@@ -319,12 +321,10 @@ impl App {
                 *visible = !*visible;
             }
             Action::PresetPrevious | Action::PresetNext => {
-                self.preset = if action == Action::PresetNext {
-                    self.preset.next()
-                } else {
-                    self.preset.previous()
-                };
-                self.record_session(false);
+                let sample = self
+                    .preview_sample
+                    .adjacent(action == Action::PresetNext, self.custom_preview.is_some());
+                self.select_sample(sample, self.preview_content);
             }
             Action::ToggleFavorite | Action::ToggleIgnore => {
                 self.update_marks(action);

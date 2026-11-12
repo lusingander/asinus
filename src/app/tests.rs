@@ -305,7 +305,7 @@ fn help_blocks_background_actions(#[case] context: InputContext) {
     assert_eq!(app.pinned_theme().unwrap().name, "3024 Day");
     assert_eq!(app.mode, mode);
     assert_eq!(app.theme_list_visible(), list_visible);
-    assert_eq!(app.preset, Preset::Palette);
+    assert_eq!(app.preview_sample, Sample::BuiltIn(Preset::Palette));
     assert!(app.marks.is_empty());
     assert!(app.workspace_action.is_none());
     assert!(app.storage_action.is_none());

@@ -11,7 +11,7 @@ Terminal Color Theme Explorer 🫏
 
 Asinus is a TUI application for exploring, previewing, and comparing terminal color themes.
 
-- Preview themes with built-in terminal samples and compare them side by side.
+- Preview themes with built-in samples or your own text, and compare them side by side.
 - Search by name, appearance, background color, brightness, and text contrast.
 - Inspect color values and credits, mark favorites, and save search conditions.
 
@@ -37,6 +37,8 @@ Run Asinus in a True Color terminal with at least 60 columns and 22 rows:
 asinus
 ```
 
+Run `asinus --preview sample.txt` to preview your own text. See [Custom Samples](https://lusingander.github.io/asinus/features/explore-compare.html#custom-samples) for piped input and supported formats.
+
 In Explore / Compare:
 
 | Keys | Action |
@@ -48,7 +50,7 @@ In Explore / Compare:
 | `F1` | Open contextual help |
 | `Ctrl-C` | Quit from any screen |
 
-See [Explore & Compare](https://lusingander.github.io/asinus/features/explore-compare.html) for previews and [Keybindings](https://lusingander.github.io/asinus/reference/keybindings.html) for all controls.
+See [Keybindings](https://lusingander.github.io/asinus/reference/keybindings.html) for all controls.
 
 To customize UI colors and text styles, see [Configuration](https://lusingander.github.io/asinus/reference/configuration.html).
 

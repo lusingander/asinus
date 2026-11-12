@@ -5,7 +5,7 @@ Asinus saves application data in two TOML files. For the settings file you edit,
 | File | Contents | Path override |
 | --- | --- | --- |
 | `marks.toml` | Favorites and ignored themes | `ASINUS_STATE_PATH` |
-| `workspace.toml` | Saved filters, last applied conditions, preview sample and content size, comparison direction | `ASINUS_WORKSPACE_PATH` |
+| `workspace.toml` | Saved filters, last applied conditions, built-in preview sample and content size, comparison direction | `ASINUS_WORKSPACE_PATH` |
 
 ## Locations
 

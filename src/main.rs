@@ -19,20 +19,31 @@ mod workspace;
 #[cfg(test)]
 mod test_support;
 
-use std::{error::Error, process::ExitCode};
+use std::{
+    error::Error,
+    fs::File,
+    io,
+    path::{Path, PathBuf},
+    process::ExitCode,
+};
 
 use clap::Parser;
 
-use crate::{app::App, marks::MarkStore, workspace::WorkspaceStore};
+use crate::{
+    app::App, marks::MarkStore, preview::custom::CustomPreview, workspace::WorkspaceStore,
+};
 
 /// Terminal Color Theme Explorer 🫏
 #[derive(Parser)]
 #[command(version)]
-struct Cli {}
+struct Cli {
+    /// Use a UTF-8 file as the preview for this run (- reads stdin)
+    #[arg(short = 'p', long, value_name = "FILE")]
+    preview: Option<PathBuf>,
+}
 
 fn main() -> ExitCode {
-    Cli::parse();
-    match run() {
+    match run(Cli::parse()) {
         Ok(()) => ExitCode::SUCCESS,
         Err(error) => {
             eprintln!("asinus: {error}");
@@ -41,8 +52,13 @@ fn main() -> ExitCode {
     }
 }
 
-fn run() -> Result<(), Box<dyn Error>> {
+fn run(cli: Cli) -> Result<(), Box<dyn Error>> {
     let config = config::load()?;
+    let custom_preview = cli
+        .preview
+        .as_deref()
+        .map(load_custom_preview)
+        .transpose()?;
     let mut store = MarkStore::from_env()?;
     let mut workspace_store = WorkspaceStore::from_env()?;
     let (marks, marks_error) = store.load();
@@ -52,6 +68,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         .or_else(|| workspace_error.map(|error| format!("workspace: {error}")));
     let mut app = App::default();
     app.restore(marks, workspace, read_error);
+    if let Some(preview) = custom_preview {
+        app.use_custom_preview(preview);
+    }
     let stores = if app.read_only {
         drop((store, workspace_store));
         None
@@ -60,4 +79,17 @@ fn run() -> Result<(), Box<dyn Error>> {
     };
     terminal::run(app, config, stores)?;
     Ok(())
+}
+
+fn load_custom_preview(path: &Path) -> Result<CustomPreview, Box<dyn Error>> {
+    if path.as_os_str() == "-" {
+        terminal::ensure_available()?;
+        return preview::input::read(io::stdin().lock())
+            .map_err(|error| format!("could not read preview from stdin: {error}").into());
+    }
+    let sample = File::open(path)
+        .and_then(preview::input::read)
+        .map_err(|error| format!("could not read preview file {path:?}: {error}"))?;
+    terminal::ensure_available()?;
+    Ok(sample)
 }

@@ -1,6 +1,6 @@
 use crate::{
     app::{Action, App},
-    preview::{ContentSize, Preset},
+    preview::{ContentSize, Sample, custom::CustomPreview},
 };
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -11,15 +11,31 @@ pub enum PreviewField {
 
 #[derive(Debug, Clone, Copy)]
 pub struct PreviewSelection {
-    pub preset: Preset,
+    pub sample: Sample,
     pub content: ContentSize,
     pub field: PreviewField,
 }
 
 impl App {
+    pub fn use_custom_preview(&mut self, preview: CustomPreview) {
+        self.custom_preview = Some(preview);
+        self.preview_sample = Sample::Custom;
+    }
+
+    pub fn select_sample(&mut self, sample: Sample, content: ContentSize) {
+        self.preview_sample = sample;
+        if let Sample::BuiltIn(preset) = sample {
+            self.preview_content = content;
+            if !self.read_only {
+                self.session.preset = preset;
+            }
+            self.record_session(false);
+        }
+    }
+
     pub fn open_preview(&mut self) {
-        self.preset_selection = Some(PreviewSelection {
-            preset: self.preset,
+        self.preview_selection = Some(PreviewSelection {
+            sample: self.preview_sample,
             content: self.preview_content,
             field: PreviewField::Sample,
         });
@@ -27,11 +43,11 @@ impl App {
 
     pub fn update_preview(&mut self, action: Action) {
         let selection = self
-            .preset_selection
+            .preview_selection
             .as_mut()
             .expect("preview selector is open");
         match action {
-            Action::FieldNext | Action::FieldPrevious => {
+            Action::FieldNext | Action::FieldPrevious if selection.sample != Sample::Custom => {
                 selection.field = match selection.field {
                     PreviewField::Sample => PreviewField::Content,
                     PreviewField::Content => PreviewField::Sample,
@@ -39,11 +55,9 @@ impl App {
             }
             Action::ValueNext | Action::ValuePrevious => match selection.field {
                 PreviewField::Sample => {
-                    selection.preset = if action == Action::ValueNext {
-                        selection.preset.next()
-                    } else {
-                        selection.preset.previous()
-                    };
+                    selection.sample = selection
+                        .sample
+                        .adjacent(action == Action::ValueNext, self.custom_preview.is_some());
                 }
                 PreviewField::Content => {
                     let index = ContentSize::ALL
@@ -60,14 +74,14 @@ impl App {
                 }
             },
             Action::Confirm => {
-                let selection = self.preset_selection.take().unwrap();
-                if self.preset != selection.preset || self.preview_content != selection.content {
-                    self.preset = selection.preset;
-                    self.preview_content = selection.content;
-                    self.record_session(false);
+                let selection = self.preview_selection.take().unwrap();
+                if self.preview_sample != selection.sample
+                    || self.preview_content != selection.content
+                {
+                    self.select_sample(selection.sample, selection.content);
                 }
             }
-            Action::Cancel => self.preset_selection = None,
+            Action::Cancel => self.preview_selection = None,
             _ => {}
         }
     }

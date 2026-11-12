@@ -406,7 +406,10 @@ fn custom_bindings_replace_defaults_in_runtime_dispatch() {
     );
 
     assert_eq!(app.theme().unwrap().name, "Aardvark Blue");
-    assert_eq!(app.preset, crate::preview::Preset::Shell);
+    assert_eq!(
+        app.preview_sample,
+        crate::preview::Sample::BuiltIn(crate::preview::Preset::Shell)
+    );
     assert_eq!(app.selected(), Some(2));
 
     handle_key(
@@ -868,7 +871,10 @@ fn remapped_common_actions_drive_their_menus_and_both_help_views() {
         assert_eq!(app.context(), InputContext::Preset);
     }
     press(&mut app, KeyCode::F(5), KeyModifiers::NONE, &config);
-    assert_eq!(app.preset, crate::preview::Preset::Shell);
+    assert_eq!(
+        app.preview_sample,
+        crate::preview::Sample::BuiltIn(crate::preview::Preset::Shell)
+    );
     assert!(app.workspace_action.is_some());
     app.workspace_action = None;
     press(&mut app, KeyCode::F(3), KeyModifiers::NONE, &config);
